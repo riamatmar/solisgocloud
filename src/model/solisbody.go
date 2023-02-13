@@ -1,6 +1,6 @@
 package model
 
-type Paginator struct {
+type SolisPaginator struct {
 	PageNo   int `json:"pageNo"`
 	PageSize int `json:"pageSize"`
 }

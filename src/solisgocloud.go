@@ -8,24 +8,26 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"solisgocloud/src/model"
 	"time"
 
 	"github.com/go-resty/resty/v2"
+	"github.com/riamatmar/solisgocloud/src/model"
 	"github.com/rs/zerolog/log"
 )
 
 type SolisCloudService interface {
-	ReadUserStationListSolisCloud(pageNo int, pageSize int) error
+	ReadUserStationListSolisCloud(pageNo int, pageSize int) (model.SolisUserStationList, error)
 }
 
 type solisCloudService struct {
 	solisCloud model.SolisCloud
 }
 
-func (s *solisCloudService) ReadUserStationListSolisCloud(pageNo int, pageSize int) error {
+func (s *solisCloudService) ReadUserStationListSolisCloud(pageNo int, pageSize int) (model.SolisUserStationList, error) {
 
-	paginator := model.Paginator{
+	solisUserStationList := model.SolisUserStationList{}
+
+	paginator := model.SolisPaginator{
 		PageNo:   pageNo,
 		PageSize: pageSize,
 	}
@@ -33,7 +35,7 @@ func (s *solisCloudService) ReadUserStationListSolisCloud(pageNo int, pageSize i
 	paginatorJson, err := json.Marshal(paginator)
 	if err != nil {
 		log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
-		return err
+		return solisUserStationList, err
 	}
 
 	contentMD5 := s.createContentMD5(string(paginatorJson))
@@ -52,19 +54,33 @@ func (s *solisCloudService) ReadUserStationListSolisCloud(pageNo int, pageSize i
 		SetHeader("Date", date).
 		SetBody(paginator).
 		Post(s.solisCloud.URL + path)
+
 	if err != nil {
 		log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
-		return err
+		return solisUserStationList, err
 	}
 
 	if resp.StatusCode() != http.StatusOK {
 		log.Debug().Msg(string(resp.Body()))
-		err = fmt.Errorf("Error get ReadUserStationListSolisCloud (%d)", resp.StatusCode())
+		err = fmt.Errorf("error get read userstationlist (%d)", resp.StatusCode())
 		log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
-		return err
+		return solisUserStationList, err
 	}
 
-	return nil
+	solisResponse := model.SolisResponse{}
+	err = json.Unmarshal(resp.Body(), &solisResponse)
+	if err != nil {
+		log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
+		return solisUserStationList, err
+	}
+
+	err = json.Unmarshal(resp.Body(), &solisUserStationList)
+	if err != nil {
+		log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
+		return model.SolisUserStationList{}, err
+	}
+
+	return solisUserStationList, nil
 }
 
 func (s *solisCloudService) createContentMD5(contentMD5 string) string {
