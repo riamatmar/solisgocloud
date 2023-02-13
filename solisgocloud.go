@@ -74,7 +74,7 @@ func (s *solisCloudService) ReadUserStationListSolisCloud(pageNo int, pageSize i
 		return solisUserStationList, err
 	}
 
-	err = json.Unmarshal(resp.Body(), &solisUserStationList)
+	err = json.Unmarshal([]byte(solisResponse.Message), &solisUserStationList)
 	if err != nil {
 		log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
 		return model.SolisUserStationList{}, err
