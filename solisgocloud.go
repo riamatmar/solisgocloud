@@ -69,29 +69,31 @@ func (s *solisCloudService) ReadUserStationListSolisCloud(pageNo int, pageSize i
 
 	body := string(resp.Body())
 
-	solisResponse := model.SolisResponse{}
-	err = json.Unmarshal([]byte(body), &solisResponse)
+	// solisResponse := model.SolisStationResponse{}
+	// err = json.Unmarshal([]byte(body), &solisResponse)
+	// if err != nil {
+	// 	log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
+	// 	return solisUserStationList, err
+	// }
+
+	// bodyData := ""
+	// if solisResponse.Data[0] != "" {
+	// 	bodyData = solisResponse.Data
+	// }
+	// // } else if solisResponse.Message != "" {
+	// // 	bodyData = solisResponse.Message
+	// // }
+
+	// if bodyData == "" {
+	// 	log.Debug().Msg(body)
+	// 	err = fmt.Errorf("empty message")
+	// 	log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
+	// 	return solisUserStationList, err
+	// }
+
+	err = json.Unmarshal([]byte(body), &solisUserStationList)
 	if err != nil {
-		log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
-		return solisUserStationList, err
-	}
-
-	bodyData := ""
-	if solisResponse.Data != "" {
-		bodyData = solisResponse.Data
-	} else if solisResponse.Message != "" {
-		bodyData = solisResponse.Message
-	}
-
-	if bodyData == "" {
 		log.Debug().Msg(body)
-		err = fmt.Errorf("empty message")
-		log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
-		return solisUserStationList, err
-	}
-
-	err = json.Unmarshal([]byte(bodyData), &solisUserStationList)
-	if err != nil {
 		log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
 		return model.SolisUserStationList{}, err
 	}
