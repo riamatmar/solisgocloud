@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/go-resty/resty/v2"
@@ -67,9 +68,19 @@ func (s *solisCloudService) ReadUserStationListSolisCloud(pageNo int, pageSize i
 		return solisUserStationList, err
 	}
 
+	body := string(resp.Body())
+	body = strings.ReplaceAll(body, "\\", "")
+
 	solisResponse := model.SolisResponse{}
-	err = json.Unmarshal(resp.Body(), &solisResponse)
+	err = json.Unmarshal([]byte(body), &solisResponse)
 	if err != nil {
+		log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
+		return solisUserStationList, err
+	}
+
+	if solisResponse.Message == "" {
+		log.Debug().Msg(body)
+		err = fmt.Errorf("empty message")
 		log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
 		return solisUserStationList, err
 	}
