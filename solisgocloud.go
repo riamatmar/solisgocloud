@@ -67,33 +67,9 @@ func (s *solisCloudService) ReadUserStationListSolisCloud(pageNo int, pageSize i
 		return solisUserStationList, err
 	}
 
-	body := string(resp.Body())
-
-	// solisResponse := model.SolisStationResponse{}
-	// err = json.Unmarshal([]byte(body), &solisResponse)
-	// if err != nil {
-	// 	log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
-	// 	return solisUserStationList, err
-	// }
-
-	// bodyData := ""
-	// if solisResponse.Data[0] != "" {
-	// 	bodyData = solisResponse.Data
-	// }
-	// // } else if solisResponse.Message != "" {
-	// // 	bodyData = solisResponse.Message
-	// // }
-
-	// if bodyData == "" {
-	// 	log.Debug().Msg(body)
-	// 	err = fmt.Errorf("empty message")
-	// 	log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
-	// 	return solisUserStationList, err
-	// }
-
-	err = json.Unmarshal([]byte(body), &solisUserStationList)
+	err = json.Unmarshal(resp.Body(), &solisUserStationList)
 	if err != nil {
-		log.Debug().Msg(body)
+		log.Debug().Msg(string(resp.Body()))
 		log.Error().Err(err).Msg("ReadUserStationListSolisCloud")
 		return model.SolisUserStationList{}, err
 	}
@@ -106,7 +82,6 @@ func (s *solisCloudService) createContentMD5(contentMD5 string) string {
 	hasher := md5.New()
 	hasher.Write([]byte(contentMD5))
 	encodedString := base64.StdEncoding.EncodeToString(hasher.Sum(nil))
-	fmt.Println(encodedString)
 
 	return encodedString
 
@@ -118,7 +93,6 @@ func (s *solisCloudService) calculateAuthorization(input string) string {
 	h := hmac.New(sha1.New, key_for_sign)
 	h.Write([]byte(input))
 	authorization := base64.StdEncoding.EncodeToString(h.Sum(nil))
-	fmt.Println(authorization)
 
 	return authorization
 
