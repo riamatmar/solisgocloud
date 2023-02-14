@@ -30,7 +30,7 @@ type Record struct {
 	DataTimestampStr            string  `json:"dataTimestampStr"`
 	FullHour                    float64 `json:"fullHour"`
 	DayPowerGeneration          float64 `json:"dayPowerGeneration"`
-	MonthCarbonDioxide          int64   `json:"monthCarbonDioxide"`
+	MonthCarbonDioxide          float64 `json:"monthCarbonDioxide"`
 	UserID                      string  `json:"userId"`
 	Sno                         string  `json:"sno"`
 	CountryStr                  string  `json:"countryStr"`
