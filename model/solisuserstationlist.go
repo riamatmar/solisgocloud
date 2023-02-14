@@ -50,7 +50,7 @@ type Record struct {
 	CreateDate                  int64   `json:"createDate"`
 	CreateDateStr               string  `json:"createDateStr"`
 	Price                       float64 `json:"price"`
-	Capacity                    int64   `json:"capacity"`
+	Capacity                    float64 `json:"capacity"`
 	CapacityStr                 string  `json:"capacityStr"`
 	CapacityPercent             float64 `json:"capacityPercent"`
 	Capacity1                   float64 `json:"capacity1"`
@@ -63,7 +63,7 @@ type Record struct {
 	MonthEnergyStr              string  `json:"monthEnergyStr"`
 	YearEnergy                  float64 `json:"yearEnergy"`
 	YearEnergyStr               string  `json:"yearEnergyStr"`
-	AllEnergy                   int64   `json:"allEnergy"`
+	AllEnergy                   float64 `json:"allEnergy"`
 	AllEnergyStr                string  `json:"allEnergyStr"`
 	AllEnergy1                  float64 `json:"allEnergy1"`
 	AllIncome                   float64 `json:"allIncome"`
