@@ -41,7 +41,7 @@ type Record struct {
 	DIP                         float64 `json:"dip"`
 	Azimuth                     float64 `json:"azimuth"`
 	Power                       float64 `json:"power"`
-	TimeZone                    int64   `json:"timeZone"`
+	TimeZone                    float64 `json:"timeZone"`
 	TimeZoneName                string  `json:"timeZoneName"`
 	TimeZoneStr                 string  `json:"timeZoneStr"`
 	TimeZoneID                  string  `json:"timeZoneId"`
