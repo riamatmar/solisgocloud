@@ -38,14 +38,14 @@ type Record struct {
 	CityStr                     string  `json:"cityStr"`
 	CountyStr                   string  `json:"countyStr"`
 	State                       int64   `json:"state"`
-	DIP                         int64   `json:"dip"`
-	Azimuth                     int64   `json:"azimuth"`
+	DIP                         float64 `json:"dip"`
+	Azimuth                     float64 `json:"azimuth"`
 	Power                       float64 `json:"power"`
 	TimeZone                    int64   `json:"timeZone"`
 	TimeZoneName                string  `json:"timeZoneName"`
 	TimeZoneStr                 string  `json:"timeZoneStr"`
 	TimeZoneID                  string  `json:"timeZoneId"`
-	Daylight                    int64   `json:"daylight"`
+	Daylight                    float64 `json:"daylight"`
 	PowerStr                    string  `json:"powerStr"`
 	CreateDate                  int64   `json:"createDate"`
 	CreateDateStr               string  `json:"createDateStr"`
@@ -53,19 +53,19 @@ type Record struct {
 	Capacity                    int64   `json:"capacity"`
 	CapacityStr                 string  `json:"capacityStr"`
 	CapacityPercent             float64 `json:"capacityPercent"`
-	Capacity1                   int64   `json:"capacity1"`
+	Capacity1                   float64 `json:"capacity1"`
 	PicName                     string  `json:"picName"`
 	Pic1URL                     string  `json:"pic1Url"`
 	DayEnergy                   float64 `json:"dayEnergy"`
 	DayEnergyStr                string  `json:"dayEnergyStr"`
 	DayIncome                   float64 `json:"dayIncome"`
-	MonthEnergy                 int64   `json:"monthEnergy"`
+	MonthEnergy                 float64 `json:"monthEnergy"`
 	MonthEnergyStr              string  `json:"monthEnergyStr"`
-	YearEnergy                  int64   `json:"yearEnergy"`
+	YearEnergy                  float64 `json:"yearEnergy"`
 	YearEnergyStr               string  `json:"yearEnergyStr"`
 	AllEnergy                   int64   `json:"allEnergy"`
 	AllEnergyStr                string  `json:"allEnergyStr"`
-	AllEnergy1                  int64   `json:"allEnergy1"`
+	AllEnergy1                  float64 `json:"allEnergy1"`
 	AllIncome                   float64 `json:"allIncome"`
 	UpdateDate                  int64   `json:"updateDate"`
 	Type                        int64   `json:"type"`
@@ -77,18 +77,18 @@ type Record struct {
 	AlarmLongStr                string  `json:"alarmLongStr"`
 	DcInputType                 int64   `json:"dcInputType"`
 	StationTypeNew              int64   `json:"stationTypeNew"`
-	BatteryTotalDischargeEnergy int64   `json:"batteryTotalDischargeEnergy"`
-	BatteryTotalChargeEnergy    int64   `json:"batteryTotalChargeEnergy"`
-	GridPurchasedTotalEnergy    int64   `json:"gridPurchasedTotalEnergy"`
-	GridSellTotalEnergy         int64   `json:"gridSellTotalEnergy"`
-	HomeLoadTotalEnergy         int64   `json:"homeLoadTotalEnergy"`
-	OneSelf                     int64   `json:"oneSelf"`
-	BatteryTodayDischargeEnergy int64   `json:"batteryTodayDischargeEnergy"`
-	BatteryTodayChargeEnergy    int64   `json:"batteryTodayChargeEnergy"`
-	GridPurchasedTodayEnergy    int64   `json:"gridPurchasedTodayEnergy"`
-	GridSellTodayEnergy         int64   `json:"gridSellTodayEnergy"`
-	HomeLoadTodayEnergy         int64   `json:"homeLoadTodayEnergy"`
-	OneSelfTotal                int64   `json:"oneSelfTotal"`
+	BatteryTotalDischargeEnergy float64 `json:"batteryTotalDischargeEnergy"`
+	BatteryTotalChargeEnergy    float64 `json:"batteryTotalChargeEnergy"`
+	GridPurchasedTotalEnergy    float64 `json:"gridPurchasedTotalEnergy"`
+	GridSellTotalEnergy         float64 `json:"gridSellTotalEnergy"`
+	HomeLoadTotalEnergy         float64 `json:"homeLoadTotalEnergy"`
+	OneSelf                     float64 `json:"oneSelf"`
+	BatteryTodayDischargeEnergy float64 `json:"batteryTodayDischargeEnergy"`
+	BatteryTodayChargeEnergy    float64 `json:"batteryTodayChargeEnergy"`
+	GridPurchasedTodayEnergy    float64 `json:"gridPurchasedTodayEnergy"`
+	GridSellTodayEnergy         float64 `json:"gridSellTodayEnergy"`
+	HomeLoadTodayEnergy         float64 `json:"homeLoadTodayEnergy"`
+	OneSelfTotal                float64 `json:"oneSelfTotal"`
 	Money                       string  `json:"money"`
 	Remark1                     string  `json:"remark1"`
 	Remark2                     string  `json:"remark2"`
@@ -98,7 +98,7 @@ type Record struct {
 	InverterCount               int64   `json:"inverterCount"`
 	Power1                      float64 `json:"power1"`
 	MonthEnergy1                int64   `json:"monthEnergy1"`
-	YearEnergy1                 int64   `json:"yearEnergy1"`
+	YearEnergy1                 float64 `json:"yearEnergy1"`
 	DayEnergy1                  float64 `json:"dayEnergy1"`
 }
 
