@@ -97,7 +97,7 @@ type Record struct {
 	JxbType                     int64   `json:"jxbType"`
 	InverterCount               int64   `json:"inverterCount"`
 	Power1                      float64 `json:"power1"`
-	MonthEnergy1                int64   `json:"monthEnergy1"`
+	MonthEnergy1                float64 `json:"monthEnergy1"`
 	YearEnergy1                 float64 `json:"yearEnergy1"`
 	DayEnergy1                  float64 `json:"dayEnergy1"`
 }
